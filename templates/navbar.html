@@ -1,0 +1,77 @@
+{% include 'main.html' %}
+
+{% load static %}
+    <main class="layout layout--3">
+      <div class="container">
+        <!-- Topics Start -->
+        <div class="topics">
+          <div class="topics__header">
+            <h2>Browse Topics</h2>
+          </div>
+          <ul class="topics__list">
+            <li>
+              <a href="/" class="active">All <span></span></a>
+            </li>
+            {% for room in rooms %}
+            <li>
+              <a href="{% url 'room' room.id %}">{{room.name}}<span></span></a>
+            </li>
+            {% endfor %}
+          </ul>
+          
+        </div>
+      {% block content %}
+
+      {% endblock %}
+        
+        <div class="activities">
+          
+          <div class="activities__header">
+            <h2>Recent Activities</h2>
+          </div>
+          {% for topic in topic|slice:"10" %}
+          
+          <div class="activities__box">
+            <div class="activities__boxHeader roomListRoom__header">
+              <a href="{% url 'user-profile' topic.creator.id %}" class="roomListRoom__author">
+                <div class="avatar avatar--small">
+                  <img src="https://randomuser.me/api/portraits/women/11.jpg" />
+                </div>
+                <p>
+                  @{{topic.creator}}
+                  <span>{{topic.created|timesince}} ago</span>
+                </p>
+              </a>
+              <div class="roomListRoom__actions">
+                <a href="#">
+                  <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+                    <title>remove</title>
+                    <path
+                      d="M27.314 6.019l-1.333-1.333-9.98 9.981-9.981-9.981-1.333 1.333 9.981 9.981-9.981 9.98 1.333 1.333 9.981-9.98 9.98 9.98 1.333-1.333-9.98-9.98 9.98-9.981z"
+                    ></path>
+                  </svg>
+                </a>
+              </div>
+            </div>
+            <div class="activities__boxContent">
+              <p>created <a href="{% url 'topic' topic.id%}">{{topic.title}}</a></p>
+              
+              
+              
+            
+            </div>
+              
+            
+          </div>
+          
+          {% endfor %}
+          
+          
+        </div>
+        <!-- Activities End -->
+      </div>
+    </main>
+<script src="{% static 'js/script.js' %}"></script>
+
+
+  
