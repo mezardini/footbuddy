@@ -188,3 +188,11 @@ def deletetopic(request, pk):
         topic.delete()
         return redirect('room', pk=topic.room.id)
     return render(request, 'delete.html', {'obj':topic})
+
+
+
+def error_404_view(request, exception):
+   
+    # we add the path to the the 404.html file
+    # here. The name of our HTML file is 404.html
+    return render(request, '404.html')

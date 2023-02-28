@@ -20,3 +20,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('footbuddyapp.urls'))
 ]
+
+handler404 = 'footbuddyapp.views.error_404_view'
