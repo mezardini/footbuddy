@@ -91,11 +91,11 @@ WSGI_APPLICATION = 'footbuddy.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': env('NAME'),
-        'PASSWORD': env('PASSWORD'),
-        'HOST': env('HOST'),
-        'PORT': env('PORT'),
-        'USER': env('USER'),
+        'NAME':'postgres',
+        'PASSWORD':'zEsy#Bq5AJiZBpz',
+        'HOST':'db.unpjrqoipuwqbtfujfjf.supabase.co',
+        'PORT':'5432',
+        'USER':'postgres',
 
     }
 }
@@ -159,26 +159,7 @@ EMAIL_HOST_USER = 'olaitanola622@gmail.com'
 EMAIL_HOST_PASSWORD = 'dbcesbgrosvdozsq'
 
 
-SITE_ID = 1
-LOGIN_REDIRECT_URL = '/'
 
-# Additional configuration settings
-SOCIALACCOUNT_QUERY_EMAIL = True
-ACCOUNT_LOGOUT_ON_GET= True
-ACCOUNT_UNIQUE_EMAIL = True
-ACCOUNT_EMAIL_REQUIRED = True
-
-SOCIALACCOUNT_PROVIDERS = {
-    'google': {
-        'SCOPE': [
-            'profile',
-            'email',
-        ],
-        'AUTH_PARAMS': {
-            'access_type': 'online',
-        }
-    }
-}
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
