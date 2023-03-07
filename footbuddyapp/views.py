@@ -18,10 +18,7 @@ def home(request):
     user = User.objects.all()
     message = Message.objects.all()
     topic = Topic.objects.all()
-    if request.method == 'POST':
-        searched = request.POST['searched']
-        topics = Topic.objects.filter(title__contains = searched)
-        return render(request, 'search_room.html', {'searched':searched, 'room':rooms, 'topic':topic, 'topics':topics})
+    
 
     context = {'rooms':rooms, 'user':user, 'topic':topic, 'message':message}
     return render(request, 'index.html', context)
@@ -158,10 +155,10 @@ def search_room(request):
     topic = Topic.objects.all()
     if request.method == 'POST':
         searched = request.POST['searched']
-        topics = Topic.objects.filter(title__contains = searched)
+        topics = Topic.objects.filter(title__icontains = searched)
         return render(request, 'search_room.html', {'searched':searched, 'room':room, 'topic':topic, 'topics':topics})
 
-    context = {'room':room, 'topic':topic, 'topics':topics}
+    context = {'room':room, 'topic':topic}
     return render(request, 'search_room.html', context)
 
 def deleteMessage(request, pk):

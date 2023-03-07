@@ -1,4 +1,4 @@
-from settings import *
+from footbuddy.settings import *
 import environ
 env = environ.Env()
 environ.Env.read_env()
