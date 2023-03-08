@@ -10,6 +10,7 @@ urlpatterns = [
     path('room/<str:pk>/', views.room, name="room"),
     path('room/<str:pk>/createtopic/', views.createtopic, name="create-topic"),
     path('room/<str:pk>/topic/', views.topic, name="topic"),
+    path('topic/<str:pk>/c-m/', views.createmessage, name="create-message"),
     path('user/<int:pk>/', views.userprofile, name="user-profile"),
     path('deletetopic/<str:pk>/', views.deletetopic, name="deletetopic"),
     path('deletemessage/<str:pk>/', views.deleteMessage, name="deletemessage"),

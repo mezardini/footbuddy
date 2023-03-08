@@ -79,8 +79,6 @@ def register(request):
 
         
 
-    
-
 def logoutUser(request):
     logout(request)
     return redirect('home')
@@ -111,6 +109,14 @@ def topic(request, pk):
     messages = Message.objects.all()
     topic = Topic.objects.all()
     room = Room.objects.all()
+    
+    context = {'topic':topic,'topics':topics, 'messages':messages, 'topic_messages':topic_messages}
+    return render(request, 'topic.html', context)
+
+@login_required(login_url='login')
+def createmessage(request, pk):
+    topics = Topic.objects.get(id=pk)
+
     if request.method == 'POST':
         message = Message.objects.create(
             sender = request.user,
@@ -120,11 +126,10 @@ def topic(request, pk):
         message.save()
         return redirect('topic', pk=topics.id)
     
+    context = {'topic':topics}
+    return render(request, 'create-message.html', context)
 
-    
-    context = {'topic':topic,'topics':topics, 'messages':messages, 'topic_messages':topic_messages}
-    return render(request, 'topic.html', context)
-
+@login_required(login_url='login')
 def createtopic(request, pk):
     room = Room.objects.get(id=pk)
     if request.method == 'POST':
@@ -161,6 +166,7 @@ def search_room(request):
     context = {'room':room, 'topic':topic}
     return render(request, 'search_room.html', context)
 
+@login_required(login_url='login')
 def deleteMessage(request, pk):
     
     message = Message.objects.get(id=pk)
@@ -175,6 +181,7 @@ def deleteMessage(request, pk):
         return redirect('topic', pk =message.topic.id)
     return render(request, 'delete.html', {'obj':message})
 
+@login_required(login_url='login')
 def deletetopic(request, pk):
     topic = Topic.objects.get(id=pk)
 

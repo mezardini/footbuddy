@@ -94,9 +94,8 @@
             </div>
           </div>
           <div class="room__message">
-            <form action="" method="POST">
-              {%csrf_token%}
-            <input name="message" placeholder="Write your message here..." /></form>
+            
+            <a class="btn btn--main btn--pill" href="{% url 'create-message' topics.id %}">Reply</a>
           </div>
         </div>
         <!-- Room End -->

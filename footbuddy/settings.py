@@ -86,11 +86,11 @@ WSGI_APPLICATION = 'footbuddy.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME':'postgres',
-        'PASSWORD':'zEsy#Bq5AJiZBpz',
-        'HOST':'db.unpjrqoipuwqbtfujfjf.supabase.co',
-        'PORT':'5432',
-        'USER':'postgres',
+        'NAME':env('NAME'),
+        'PASSWORD':env('PASSWORD'),
+        'HOST':env('HOST'),
+        'PORT':env('PORT'),
+        'USER':env('USER'),
 
     }
 }
@@ -153,7 +153,10 @@ EMAIL_PORT = 465
 EMAIL_HOST_USER = 'olaitanola622@gmail.com'
 EMAIL_HOST_PASSWORD = 'dbcesbgrosvdozsq'
 
-
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend'
+]
 
 
 # Default primary key field type
