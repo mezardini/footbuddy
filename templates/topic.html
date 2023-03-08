@@ -42,7 +42,7 @@
             <div class="room__header scroll">
               <div class="room__info">
                 <h3>{{topics.title}}</h3>
-                <span>{{topics.created|timesince}} ago</span>
+                <span>{{topics.created|time}} ago</span>
               </div>
               <div class="room__hosted">
                 <p>Hosted By</p>
@@ -70,7 +70,7 @@
                         </div>
                         <span>@{{message.sender}}</span>
                       </a>
-                      <span class="thread__date">{{message.created|timesince}}ago</span>
+                      <span class="thread__date">{{message.created|time}}</span>
                     </div>
                     {% if request.user == message.sender %}
                     <a href="{% url 'deletemessage' message.id %}">

@@ -14,7 +14,7 @@
   <body>
     <header class="header header--loggedIn">
       <div class="container">
-        <a href="/" class="header__logo">
+        <a href="{% url 'home' %}" class="header__logo">
           
           <h1>Mezzala</h1>
         </a>
@@ -40,6 +40,10 @@
           <!-- Logged In -->
          
           <div class="header__user">
+            <a href="{% url 'home' %}" class="header__logo">
+          
+              <h1>Mezzala</h1>
+            </a>
             {% if request.user.is_authenticated %}
             <a href="{% url 'user-profile' request.user.id %}">
               <div class="">
@@ -113,33 +117,11 @@
               {%csrf_token%}
               <label>
                 
-                </svg>
-                <input name="searched" placeholder="Search for posts" />               
+                <input name="searched" placeholder="Search for topics" />               
               </label>
-              <button class="btn btn--main" type="submit">
-                <svg
-                  version="1.1"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="32"
-                  height="32"
-                  viewBox="0 0 32 32"
-                >
-                  <title>lock</title>
-                  <path
-                    d="M27 12h-1v-2c0-5.514-4.486-10-10-10s-10 4.486-10 10v2h-1c-0.553 0-1 0.447-1 1v18c0 0.553 0.447 1 1 1h22c0.553 0 1-0.447 1-1v-18c0-0.553-0.447-1-1-1zM8 10c0-4.411 3.589-8 8-8s8 3.589 8 8v2h-16v-2zM26 30h-20v-16h20v16z"
-                  ></path>
-                  <path
-                    d="M15 21.694v4.306h2v-4.306c0.587-0.348 1-0.961 1-1.694 0-1.105-0.895-2-2-2s-2 0.895-2 2c0 0.732 0.413 1.345 1 1.694z"
-                  ></path>
-                </svg>
-
-                POST
-              </button>
+              
             </form>
-            <div class="mobile-menuItems">
-              <a class="btn btn--main btn--pill" href="#">Browse Topics</a>
-              <a class="btn btn--main btn--pill" href="#">Recent Activities</a>
-            </div>
+            
           </div>
           <div class="roomList__header">
             <div>
