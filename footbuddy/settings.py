@@ -25,12 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-h@fsq5e9djw*nnc2yphcw71ya8l(f4n5n_1i77xc=l%@lc6(18'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -91,12 +86,11 @@ WSGI_APPLICATION = 'footbuddy.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME':env('NAME'),
-        'PASSWORD':env('PASSWORD'),
-        'HOST':env('HOST'),
-        'PORT':env('PORT'),
-        'USER':env('USER'),
-
+        'NAME':'postgres',
+        'PASSWORD':'zEsy#Bq5AJiZBpz',
+        'HOST':'db.unpjrqoipuwqbtfujfjf.supabase.co',
+        'PORT':'5432',
+        'USER':'postgres',
 
     }
 }
