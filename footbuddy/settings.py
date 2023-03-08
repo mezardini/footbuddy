@@ -26,8 +26,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 
-# SECURITY WARNING: don't run with debug turned on in production!
-
 
 
 # Application definition
@@ -88,11 +86,11 @@ WSGI_APPLICATION = 'footbuddy.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME':env('NAME'),
-        'PASSWORD':env('PASSWORD'),
-        'HOST':env('HOST'),
-        'PORT':env('PORT'),
-        'USER':env('USER'),
+        'NAME':'postgres',
+        'PASSWORD':'zEsy#Bq5AJiZBpz',
+        'HOST':'db.unpjrqoipuwqbtfujfjf.supabase.co',
+        'PORT':'5432',
+        'USER':'postgres',
 
     }
 }
@@ -134,7 +132,7 @@ USE_TZ = True
 
 
 
-STATIC_URL = 'static/'
+# STATIC_URL = 'static/'
 # STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # STATICFILES_DIRS=(os.path.join(BASE_DIR / 'static'),)
 ADMIN_MEDIA_PREFIX = '/static/admin/'   

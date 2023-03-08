@@ -66,7 +66,7 @@
                     <div class="thread__author">
                       <a href="{% url 'home' %}" class="thread__authorInfo">
                         <div class="avatar avatar--small">
-                          <img src="https://randomuser.me/api/portraits/men/37.jpg" />
+                          
                         </div>
                         <span>@{{message.sender}}</span>
                       </a>
@@ -111,7 +111,7 @@
             {% for user in topic_messages %}
             <a href="{% url 'home' %}" class="participant">
               <div class="avatar avatar--medium">
-                <img src="https://randomuser.me/api/portraits/men/37.jpg" />
+                
               </div>
               <p>
                 {{user.sender}}
