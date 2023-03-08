@@ -16,7 +16,7 @@
       <div class="container">
         <a href="{% url 'home' %}" class="header__logo">
           
-          <h1>Mezzala</h1>
+          <h5>Mezzala</h5>
         </a>
         <form class="header__search" method="POST" action="{% url 'search-room' %}">
           {%csrf_token%}
@@ -31,19 +31,8 @@
           </label>
         </form>
         <nav class="header__menu">
-          <!-- Not Logged In -->
-          <!-- <a href="/login.html">
-            <img src="./assets/avatar.svg" />
-            <p>Login</p>
-          </a> -->
-
-          <!-- Logged In -->
-         
-          <div class="header__user">
-            <a href="{% url 'home' %}" class="header__logo">
           
-              <h1>Mezzala</h1>
-            </a>
+          <div class="header__user">
             {% if request.user.is_authenticated %}
             <a href="{% url 'user-profile' request.user.id %}">
               <div class="">
@@ -121,7 +110,10 @@
               </label>
               
             </form>
-            
+            <div class="mobile-menuItems">
+              <a class="btn btn--main btn--pill" href="#">Browse Topics</a>
+              <a class="btn btn--main btn--pill" href="#">Recent Activities</a>
+            </div>
           </div>
           <div class="roomList__header">
             <div>
