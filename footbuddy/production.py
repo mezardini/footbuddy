@@ -21,11 +21,11 @@ AWS_STORAGE_BUCKET_NAME = env('AWS_STORAGE_BUCKET_NAME')
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME':'postgres',
-        'PASSWORD':'zEsy#Bq5AJiZBpz',
-        'HOST':'db.unpjrqoipuwqbtfujfjf.supabase.co',
-        'PORT':'5432',
-        'USER':'postgres',
+        'NAME': env('NAME'),
+        'PASSWORD': env('PASSWORD'),
+        'HOST': env('HOST'),
+        'PORT': '5432',
+        'USER': env('USER'),
 
     }
 }
