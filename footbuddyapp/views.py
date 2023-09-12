@@ -1,6 +1,6 @@
 from multiprocessing import context
 from unicodedata import name
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
@@ -114,37 +114,43 @@ def topic(request, pk):
     return render(request, 'topic.html', context)
 
 @login_required(login_url='login')
-def createmessage(request, pk):
-    topics = Topic.objects.get(id=pk)
+def create_message(request, topic_id):
+    topic = get_object_or_404(Topic, id=topic_id)
 
     if request.method == 'POST':
-        message = Message.objects.create(
-            sender = request.user,
-            topic = topics,
-            body = request.POST.get('message')
-        )
-        message.save()
-        return redirect('topic', pk=topics.id)
+        message_body = request.POST.get('message')
+
+        if message_body:
+            message = Message.objects.create(
+                sender=request.user,
+                topic=topic,
+                body=message_body
+            )
+            message.save()
+            return redirect('topic', pk=topic.id)
     
-    context = {'topic':topics}
+    context = {'topic': topic}
     return render(request, 'create-message.html', context)
 
 @login_required(login_url='login')
-def createtopic(request, pk):
-    room = Room.objects.get(id=pk)
+def create_topic(request, room_id):
+    room = get_object_or_404(Room, id=room_id)
+    
     if request.method == 'POST':
-        topic = Topic.objects.create(
-            creator = request.user,
-            room = room,
-            title = request.POST.get('title-topic'),
-            body = request.POST.get('body-topic')
-        )
-        topic.save()
-        return redirect('room', pk=room.id)
-        
+        title = request.POST.get('title-topic')
+        body = request.POST.get('body-topic')
+
+        if title and body:
+            topic = Topic.objects.create(
+                creator=request.user,
+                room=room,
+                title=title,
+                body=body
+            )
+            topic.save()
+            return redirect('room', pk=room.id)
 
     return render(request, 'create-topic.html')
-
 def userprofile(request, pk):
     user = User.objects.get(id=pk)
     # topic = Topic.objects.get(id=pk)
@@ -156,14 +162,15 @@ def userprofile(request, pk):
     return render(request, 'profile.html', context)
 
 def search_room(request):
-    room = Room.objects.all()
-    topic = Topic.objects.all()
-    if request.method == 'POST':
-        searched = request.POST['searched']
-        topics = Topic.objects.filter(title__icontains = searched)
-        return render(request, 'search_room.html', {'searched':searched, 'room':room, 'topic':topic, 'topics':topics})
+    rooms = Room.objects.all()
+    topics = Topic.objects.all()
+    
+    searched = request.POST.get('searched', '')
 
-    context = {'room':room, 'topic':topic}
+    if searched:
+        topics = Topic.objects.filter(title__icontains=searched)
+    
+    context = {'room': rooms, 'topic': topics, 'searched': searched}
     return render(request, 'search_room.html', context)
 
 @login_required(login_url='login')
